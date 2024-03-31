@@ -1,3 +1,5 @@
+# Goal
+- The UI is very simple, the goal of this repo is to use S3 presigned URL to upload photos and practice NextJS, ChakraUI.
 # Prerequisite
 
 - Must have docker in your machine.
