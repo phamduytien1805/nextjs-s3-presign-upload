@@ -14,12 +14,9 @@ export const createImage = (image: Omit<TImage,'id'>) :TImage=> {
     ...image
   }
   Images[createdImg.id] = createdImg;
-  console.log('Images :>> ', Images);
   return createdImg
 }
 
 export const findImageById = (imgId: string)=> {
-  console.log('Images dind:>> ', Images);
-
   return Images[imgId];
 }

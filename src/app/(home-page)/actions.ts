@@ -42,13 +42,13 @@ export const requestPreSignedURL = async ({
     Key: fileName,
     ContentType: type,
     ContentLength: size,
-    ChecksumSHA256: checksum,
+    ChecksumSHA256: checksum, // pass checksum of requested file to prevent bad file when using presignedUrl
   })
 
   const presignedUrl = await getSignedUrl(
     s3Client,
     putObjectCommand,
-    { expiresIn: 60 }
+    { expiresIn: 60 } // 60 sec for a photo
   )
 
   const image = createImage({
@@ -60,7 +60,6 @@ export const requestPreSignedURL = async ({
 }
 
 export const uploadFeed = async (imageId: string) => {
-  console.log('imageId :>> ', imageId);
   const feed = createFeed({
     imageId
   })
@@ -82,7 +81,6 @@ export const fetchPosts = async () => {
 
 export const fetchComments = async (feedId: TFeed['id']) => {
   const feed = findFeedById(feedId);
-  console.log('feed :>> ', feed);
   const comments = feed.commentIds.map((cmtId) => findCommentById(cmtId))
   return comments
 }
@@ -90,5 +88,7 @@ export const fetchComments = async (feedId: TFeed['id']) => {
 export const postComment = async (feedId:TFeed['id'], content: string) => {
   const comment = createComment({content})
   addComment(feedId,comment.id);
+  revalidatePath("/")
+
   return true
 }

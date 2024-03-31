@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 export default function Post({post,Comment} : {post: TPost, Comment: JSX.Element}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Stack boxSize={'sm'} gap={4} alignItems={'center'}>
+    <Stack boxSize={'sm'} gap={4} alignItems={'center'} height={'100%'}>
         <Image src={post.url} alt='uploaded img' />
         <Button colorScheme='blue' onClick={() => {
           onOpen();

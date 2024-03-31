@@ -32,7 +32,7 @@ export default function FeedPosting() {
           name: file.name,
           size: file.size,
           type: file.type,
-          checksum: checksum,
+          checksum: checksum,// must pass the checksum to validate the requested file
         }) 
         if(requestUrl.failure){
           toast({
